@@ -38,6 +38,8 @@ import android.widget.Toast;
 
 import com.example.mobilesafe.R;
 import com.im_dsd.mobilesafe.activity.HomeActivity;
+import com.im_dsd.mobilesafe.utils.ConstantValue;
+import com.im_dsd.mobilesafe.utils.SpUtils;
 import com.im_dsd.mobilesafe.utils.StreamUtil;
 import com.im_dsd.mobilesafe.utils.ToastUtils;
 import com.lidroid.xutils.HttpUtils;
@@ -128,8 +130,7 @@ public class SplashActivity extends Activity {
 		initAnimation();
 		//初始化数据
 		initDate();
-		//检查版本
-		checkVersion();
+		
 	}
 
 	/**
@@ -165,6 +166,20 @@ public class SplashActivity extends Activity {
 		 * 1. 从 url 返回200,请求成功，流的方式将数据读取下来 2.json中应该包含的信息 更新版本的版本名称 服务器上的版本号
 		 * 新版本描述 下载新apk
 		 */
+		
+		if(SpUtils.getBoolean(this, ConstantValue.OPEN_UPDATE, true))
+		{
+			//检查版本
+			checkVersion();
+		}
+		else
+		{
+			//发送进入主界面的消息：
+			//发送延时消息,在消息发送4秒后执行消息
+			//mHandler.sendMessageDelayed(msg, delayMillis)
+			mHandler.sendEmptyMessageDelayed(ENTER_HOME, 4000);
+		}
+		
 	}
 	
 	/**

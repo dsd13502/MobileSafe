@@ -22,7 +22,7 @@
         android:textColor="#000" >
     </TextView>
  -->
-    <com.im_dsd.mobilesafe.ui.FocusedTextView
+    <com.im_dsd.mobilesafe.view.FocusedTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ellipsize="marquee"
@@ -31,6 +31,14 @@
         android:singleLine="true"
         android:text="在 HttpConfig 中定义的 请求超时时间 ，时长略短，建议提供一个 对外开放的设置 开关在 HttpConfig 中定义的 请求超时时间 ，时长略短，建议提供一个 对外开放的设置 开关"
         android:textColor="#000"  >
-    </com.im_dsd.mobilesafe.ui.FocusedTextView>
+    </com.im_dsd.mobilesafe.view.FocusedTextView>
+    
+    <!-- android:verticalSpacing="10dp" 指定内部条目竖直方向的间距 -->
+    <GridView 
+        android:id="@+id/gv_home"
+        android:numColumns="3"
+        android:verticalSpacing="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></GridView>
 
 </LinearLayout>

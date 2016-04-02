@@ -31,6 +31,10 @@
             android:name="com.im_dsd.mobilesafe.activity.HomeActivity"
             android:label="@string/title_activity_home" >
         </activity>
+        <activity
+            android:name="com.im_dsd.mobilesafe.activity.SettingActivity"
+            android:label="@string/title_activity_setting" >
+        </activity>
     </application>
 
 </manifest>
