@@ -31,6 +31,8 @@ import android.text.style.BulletSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.AlphaAnimation;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -82,6 +84,7 @@ public class SplashActivity extends Activity {
 	private String mVersionDes;
 	private String mVersionCode;
 	private String mDownloadUrl;
+	private RelativeLayout rv_splash_root;
 
 	private Handler mHandler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
@@ -109,6 +112,7 @@ public class SplashActivity extends Activity {
 			}
 		};
 	};
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +124,11 @@ public class SplashActivity extends Activity {
 
 		// 初始化UI
 		initUI();
+		//添加动画
+		initAnimation();
+		//初始化数据
 		initDate();
+		//检查版本
 		checkVersion();
 	}
 
@@ -141,6 +149,7 @@ public class SplashActivity extends Activity {
 	public void initUI() {
 
 		tv_versionName = (TextView) findViewById(R.id.tv_version_name);
+		rv_splash_root = (RelativeLayout) findViewById(R.id.rv_splash_root);
 	}
 
 	/**
@@ -156,6 +165,16 @@ public class SplashActivity extends Activity {
 		 * 1. 从 url 返回200,请求成功，流的方式将数据读取下来 2.json中应该包含的信息 更新版本的版本名称 服务器上的版本号
 		 * 新版本描述 下载新apk
 		 */
+	}
+	
+	/**
+	 * 初始化Alpha动画
+	 */
+	public void initAnimation()
+	{
+		AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1);
+		alphaAnimation.setDuration(2000);
+		rv_splash_root.setAnimation(alphaAnimation);
 	}
 
 	/**
@@ -411,6 +430,8 @@ public class SplashActivity extends Activity {
 		//防止用户取消换安装apk，停留则splashActivity无法继续进Homeactivity
 		startActivityForResult(intent, 0);
 	}
+	
+	
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -1,16 +1,36 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="com.im_dsd.mobilesafe.activity.HomeActivity" >
 
     <TextView
-        android:layout_width="wrap_content"
+        style="@style/TitleStyle"
+        android:text="功能列表" />
+<!-- 
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:text="在 HttpConfig 中定义的 请求超时时间 ，时长略短，建议提供一个 对外开放的设置 开关在 HttpConfig 中定义的 请求超时时间 ，时长略短，建议提供一个 对外开放的设置 开关"
+        android:textColor="#000" >
+    </TextView>
+ -->
+    <com.im_dsd.mobilesafe.ui.FocusedTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:text="在 HttpConfig 中定义的 请求超时时间 ，时长略短，建议提供一个 对外开放的设置 开关在 HttpConfig 中定义的 请求超时时间 ，时长略短，建议提供一个 对外开放的设置 开关"
+        android:textColor="#000"  >
+    </com.im_dsd.mobilesafe.ui.FocusedTextView>
 
-</RelativeLayout>
+</LinearLayout>
