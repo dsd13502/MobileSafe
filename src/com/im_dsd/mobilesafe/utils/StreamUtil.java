@@ -25,9 +25,9 @@ public class StreamUtil {
 		try {
 			while((len = is.read(buffer)) != -1)
 			{
-				bos.write(buffer, 1, len);
+				bos.write(buffer, 0, len);
 			}
-			return bos.toString();
+			return bos.toString("utf-8");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
