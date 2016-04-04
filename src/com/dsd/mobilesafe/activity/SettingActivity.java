@@ -1,10 +1,10 @@
-package com.im_dsd.mobilesafe.activity;
+package com.dsd.mobilesafe.activity;
 
-import com.example.mobilesafe.R;
-import com.example.mobilesafe.R.layout;
-import com.im_dsd.mobilesafe.utils.ConstantValue;
-import com.im_dsd.mobilesafe.utils.SpUtils;
-import com.im_dsd.mobilesafe.view.SettingItemView;
+import com.dsd.mobilesafe.utils.ConstantValue;
+import com.dsd.mobilesafe.utils.SpUtils;
+import com.dsd.mobilesafe.view.SettingItemView;
+import com.dsd.mobilesafe.R;
+import com.dsd.mobilesafe.R.layout;
 
 import android.app.Activity;
 import android.content.Context;
@@ -20,7 +20,7 @@ public class SettingActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_setting);
+		setContentView(R.layout.activity_seting);
 
 		initUI();
 		initUpdate();

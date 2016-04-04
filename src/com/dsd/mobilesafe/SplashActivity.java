@@ -1,4 +1,4 @@
-package com.im_dsd.mobilesafe;
+package com.dsd.mobilesafe;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,12 +36,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.mobilesafe.R;
-import com.im_dsd.mobilesafe.activity.HomeActivity;
-import com.im_dsd.mobilesafe.utils.ConstantValue;
-import com.im_dsd.mobilesafe.utils.SpUtils;
-import com.im_dsd.mobilesafe.utils.StreamUtil;
-import com.im_dsd.mobilesafe.utils.ToastUtils;
+import com.dsd.mobilesafe.activity.HomeActivity;
+import com.dsd.mobilesafe.utils.ConstantValue;
+import com.dsd.mobilesafe.utils.SpUtils;
+import com.dsd.mobilesafe.utils.StreamUtil;
+import com.dsd.mobilesafe.utils.ToastUtils;
+import com.dsd.mobilesafe.R;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;

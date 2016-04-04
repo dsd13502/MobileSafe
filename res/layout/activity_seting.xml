@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=" com.im_dsd.mobilesafe.activity.SettingActivity" >
+    tools:context=" com.dsd.mobilesafe.activity.SettingActivity" >
 
-    <TextView 
+    <TextView
         style="@style/TitleStyle"
-        android:text="设置中心"/>
-    
+        android:text="设置中心" />
+
     <!-- 我们使用自定义组合控件来复用代码 -->
     <!--
     <RelativeLayout
@@ -50,15 +50,22 @@
     </RelativeLayout>
     -->
 
-    <com.im_dsd.mobilesafe.view.SettingItemView
+    <com.dsd.mobilesafe.view.SettingItemView
+        xmlns:mobilesafe="http://schemas.android.com/apk/res/com.dsd.mobilesafe"
         android:id="@+id/siv_update"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </com.im_dsd.mobilesafe.view.SettingItemView>
-    
-      <com.im_dsd.mobilesafe.view.SettingItemView
+        android:layout_height="wrap_content"
+        mobilesafe:desoff="自动更新已关闭"
+        mobilesafe:deson="自动更新已开启"
+        mobilesafe:destitle="自动更新设置" >
+    </com.dsd.mobilesafe.view.SettingItemView>
+
+    <com.dsd.mobilesafe.view.SettingItemView
+        xmlns:mobilesafe="http://schemas.android.com/apk/res/com.dsd.mobilesafe"
+        android:id="@+id/siv_"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </com.im_dsd.mobilesafe.view.SettingItemView>
+        android:layout_height="wrap_content"
+        mobilesafe:destitle="电话归属地的属性设置" >
+    </com.dsd.mobilesafe.view.SettingItemView>
 
 </LinearLayout>

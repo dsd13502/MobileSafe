@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mobilesafe"
+    package="com.dsd.mobilesafe"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -19,7 +19,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.im_dsd.mobilesafe.SplashActivity"
+            android:name=".SplashActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,12 +28,26 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.im_dsd.mobilesafe.activity.HomeActivity"
+            android:name=".activity.HomeActivity"
             android:label="@string/title_activity_home" >
         </activity>
         <activity
-            android:name="com.im_dsd.mobilesafe.activity.SettingActivity"
+            android:name=".activity.SettingActivity"
             android:label="@string/title_activity_setting" >
+        </activity>
+        <activity android:name=".activity.TestActivity" >
+        </activity>
+        <activity
+            android:name=".activity.SetupOverActivity"
+            android:label="@string/title_activity_setup_over" >
+        </activity>
+        <activity
+            android:name=".activity.Setup1Activity"
+            android:label="@string/title_activity_setuping" >
+        </activity>
+        <activity
+            android:name=".Setup2Activity"
+            android:label="@string/title_activity_setup2" >
         </activity>
     </application>
 

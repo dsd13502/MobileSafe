@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/launcher_bg"
-    tools:context="com.im_dsd.mobilesafe.SplashActivity" 
+    tools:context="com.dsd.mobilesafe.SplashActivity" 
     android:id="@+id/rv_splash_root">
 
     <TextView

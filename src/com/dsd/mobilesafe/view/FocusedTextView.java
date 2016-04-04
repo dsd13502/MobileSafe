@@ -1,4 +1,4 @@
-package com.im_dsd.mobilesafe.view;
+package com.dsd.mobilesafe.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

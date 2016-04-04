@@ -1,4 +1,4 @@
-package com.im_dsd.mobilesafe.utils;
+package com.dsd.mobilesafe.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

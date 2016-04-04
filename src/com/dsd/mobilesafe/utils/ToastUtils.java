@@ -1,4 +1,4 @@
-package com.im_dsd.mobilesafe.utils;
+package com.dsd.mobilesafe.utils;
 
 import android.content.Context;
 import android.widget.Toast;
