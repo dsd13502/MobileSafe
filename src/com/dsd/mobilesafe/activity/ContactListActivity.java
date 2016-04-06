@@ -115,17 +115,20 @@ public class ContactListActivity extends Activity {
 						if (type.equals("vnd.android.cursor.item/name")) {
 							if (!TextUtils.isEmpty(data)) {
 								hashMap.put("name", data);
+								
 							}
 						} else if (type
 								.equals("vnd.android.cursor.item/phone_v2")) {
 							if (!TextUtils.isEmpty(data)) {
 								hashMap.put("phone", data);
+								
 							}
 						}
 					}
 					indexCursor.close();
 
 					contactList.add(hashMap);
+					
 				}
 
 				query.close();
@@ -190,8 +193,8 @@ public class ContactListActivity extends Activity {
 	}
 
 	static class ViewHolder {
-		TextView tv_name = null;
-		TextView tv_phone = null;
+		TextView tv_name ;
+		TextView tv_phone;
 	}
 
 }

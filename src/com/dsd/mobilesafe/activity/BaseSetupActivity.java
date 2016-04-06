@@ -75,7 +75,7 @@ public abstract class BaseSetupActivity extends Activity {
 	public abstract void showNextpage();
 
 	// 统一处理跳转指令
-	private void nextPage(View view) {
+	public void nextPage(View view) {
 		showNextpage();
 	}
 

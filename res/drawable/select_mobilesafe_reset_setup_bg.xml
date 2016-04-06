@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- 将灰色圆角矩形，作为选中背景图片 -->
+    <item android:drawable="@drawable/gradient_box" android:state_pressed="true"></item>
+    
+    <!-- 将透明色作为未选中情况下的图片背景 -->
+    <item android:drawable="@android:color/transparent"></item>
+
+</selector>
