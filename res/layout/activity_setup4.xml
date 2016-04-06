@@ -6,26 +6,16 @@
 
     <TextView
         style="@style/TitleStyle"
-        android:text="2 手机卡绑定" />
+        android:text="恭喜，设置完成" />
 
-    <TextView
+    <CheckBox
+        android:id="@+id/cb_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="通过绑定sim卡的：\n下次重启手机如果发现sim卡变化，就会发送报警短息"
+        android:text="您没有开启防盗保护"
         android:textColor="#000"
         android:textSize="18sp" />
-
-  <com.dsd.mobilesafe.view.SettingItemView
-        xmlns:mobilesafe="http://schemas.android.com/apk/res/com.dsd.mobilesafe"
-        android:id="@+id/siv_sim_bound"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        mobilesafe:desoff="sim卡已绑定"
-        mobilesafe:deson="sim卡未绑定"
-        mobilesafe:destitle="点击绑定sim卡" >
-    </com.dsd.mobilesafe.view.SettingItemView>
-    
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,17 +30,17 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@android:drawable/presence_offline" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/presence_offline" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@android:drawable/presence_online" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:drawable/presence_offline" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:drawable/presence_offline" />
     </LinearLayout>
 
     <RelativeLayout
@@ -61,12 +51,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:background="@drawable/setup1" />
+            android:background="@drawable/phone" />
         <!-- 图片选择器， -->
 
-        <Button style="@style/nextPage" />
-        <Button style="@style/prePage" />
+        <Button
+            style="@style/nextPage"
+            android:onClick="nextPage" />
+
+        <Button
+            style="@style/prePage"
+            android:onClick="perPage" />
     </RelativeLayout>
 
-    
 </LinearLayout>

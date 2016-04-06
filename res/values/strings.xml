@@ -10,5 +10,9 @@
     <string name="title_activity_setup_over">SetupOverActivity</string>
     <string name="title_activity_setuping">SetupingActivity</string>
     <string name="title_activity_setup2">Setup2Activity</string>
+    <string name="title_activity_setup3">Setup3Activity</string>
+    <string name="title_activity_setup4">Setup4Activity</string>
+    <string name="title_activity_contact_list">ContactListActivity</string>
+    <string name="title_activity_base_setup">BaseSetupActivity</string>
 
 </resources>

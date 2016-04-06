@@ -12,6 +12,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
@@ -46,8 +48,24 @@
             android:label="@string/title_activity_setuping" >
         </activity>
         <activity
-            android:name=".Setup2Activity"
+            android:name=".activity.Setup2Activity"
             android:label="@string/title_activity_setup2" >
+        </activity>
+        <activity
+            android:name=".activity.Setup3Activity"
+            android:label="@string/title_activity_setup3" >
+        </activity>
+        <activity
+            android:name=".activity.Setup4Activity"
+            android:label="@string/title_activity_setup4" >
+        </activity>
+        <activity
+            android:name=".activity.ContactListActivity"
+            android:label="@string/title_activity_contact_list" >
+        </activity>
+        <activity
+            android:name="com.dsd.mobilesafe.activity.BaseSetupActivity"
+            android:label="@string/title_activity_base_setup" >
         </activity>
     </application>
 

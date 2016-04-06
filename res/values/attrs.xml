@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="com.im_dsd.mobilesafe.view.SettingItemView">
+    <declare-styleable name="com.dsd.mobilesafe.view.SettingItemView">
         <attr name="destitle" format="string" />
         <attr name="desoff" format="string" />
         <attr name="deson" format="string" />

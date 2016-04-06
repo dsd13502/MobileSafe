@@ -93,6 +93,7 @@
             android:background="@drawable/setup1"/>
         <!-- 图片选择器， -->
         <Button 
+            android:onClick="nextPage"
            style="@style/nextPage"/>
     </RelativeLayout>
 

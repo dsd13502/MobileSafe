@@ -20,5 +20,17 @@ public class ConstantValue {
 	 * 保存手机防盗功能是否设置完成的key
 	 */
 	public  final static String SETUP_OVER = "setup_over";
+	/**
+	 * SIM卡的序列号key
+	 */
+	public static final String SIM_NUMBER = "sim_number";
+	/**
+	 * 存储安排号码的key
+	 */
+	public static final String CONTACT_PHONE = "contact_phone";
+	/**
+	 * 是否开启防盗保护key 这是一个总开关
+	 */
+	public static final String OPEN_SECURITY = "open_security";
 
 }
