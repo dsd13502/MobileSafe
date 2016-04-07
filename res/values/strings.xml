@@ -15,5 +15,7 @@
     <string name="title_activity_contact_list">ContactListActivity</string>
     <string name="title_activity_base_setup">BaseSetupActivity</string>
     <string name="title_activity_mobile_safe">MobileSafeActivity</string>
+    <string name="title_activity_set_content">SetContentActivity</string>
+    <string name="title_activity_query_address">QueryAddressActivity</string>
 
 </resources>

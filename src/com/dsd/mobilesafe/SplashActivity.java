@@ -1,6 +1,7 @@
 package com.dsd.mobilesafe;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -20,6 +21,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.AssetManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -55,7 +57,7 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
  */
 public class SplashActivity extends Activity {
 
-	protected static final String TAG = "SplashActivity";
+	protected static final String tag = "SplashActivity";
 	/**
 	 * 更新版本的状态码
 	 */
@@ -121,7 +123,6 @@ public class SplashActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		// [1]第一种方式去头
 		// requestWindowFeature(Window.FEATURE_NO_TITLE);
-		System.out.println("怎么了这是");
 		setContentView(R.layout.activity_splash);
 
 		// 初始化UI
@@ -130,6 +131,65 @@ public class SplashActivity extends Activity {
 		initAnimation();
 		//初始化数据
 		initDate();
+		//初始化数据库
+		initDB();
+		
+		
+		
+	}
+
+	/**
+	 * 初始化数据库方法
+	 */
+	private void initDB() {
+		// 1.归属地数据拷贝过程
+		initAddressDB("address.db");
+		
+	}
+
+	/**
+	 * 拷贝数据库值files文件夹中
+	 * @param dbName  数据库名称
+	 */
+	private void initAddressDB(String dbName) {
+		//【1】在files文件夹下创建同名数据库文件
+		File filesDir = getFilesDir();
+		File file = new File(filesDir,dbName);
+		if(file.exists())
+		{
+			Log.i(tag, "file存在了，他的路径:"+file.getAbsolutePath());
+			return;
+		}
+		Log.i(tag, "file的路径:"+file.getAbsolutePath());
+		FileOutputStream fileOutputStream = null;
+		//【2】读取第三方资产目录下的文件，
+		try {
+			InputStream openStream = getAssets().open(dbName);
+			//[3]将读取的内容写入到指定的文件夹中
+			fileOutputStream = new FileOutputStream(file);
+			int len = -1;
+			byte[] buffer = new byte[1024];
+			while((len = openStream.read(buffer)) != -1)
+			{
+				fileOutputStream.write(buffer, 0, len);
+				
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			if(fileOutputStream != null)
+			{
+				try {
+					fileOutputStream.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
 		
 	}
 
@@ -263,7 +323,7 @@ public class SplashActivity extends Activity {
 						new StreamUtil();
 						// 【6】将流封装成字符串返回回来。
 						String json = StreamUtil.stream2String(inputStream);
-						Log.i(TAG, json);
+						Log.i(tag, json);
 
 						// 【7】开始解析json文件，
 						JSONObject jsonObject = new JSONObject(json);
@@ -393,7 +453,7 @@ public class SplashActivity extends Activity {
 				public void onSuccess(ResponseInfo<File> responseInfo) {
 					// TODO 下载成功
 					File file = responseInfo.result;
-					Log.i(TAG, "下载成功");
+					Log.i(tag, "下载成功");
 					// 提醒用户安装
 					installApk(file);
 
@@ -402,7 +462,7 @@ public class SplashActivity extends Activity {
 				@Override
 				public void onFailure(HttpException arg0, String arg1) {
 					// TODO Auto-generated method stub
-					Log.i(TAG, "下载失败");
+					Log.i(tag, "下载失败");
 				}
 
 				@Override
@@ -410,14 +470,14 @@ public class SplashActivity extends Activity {
 						boolean isUploading) {
 					// TODO Auto-generated method stub
 					super.onLoading(total, current, isUploading);
-					Log.i(TAG, "下载中。。。。。。");
+					Log.i(tag, "下载中。。。。。。");
 				}
 
 				@Override
 				public void onStart() {
 					// TODO Auto-generated method stub
 					super.onStart();
-					Log.i(TAG, "开始下载");
+					Log.i(tag, "开始下载");
 				}
 			});
 		}

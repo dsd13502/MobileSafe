@@ -97,6 +97,8 @@ public class HomeActivity extends Activity {
 					
 					break;
 				case 7:
+					//跳转到高级工具共功能列表界面
+					startActivity(new Intent(getApplicationContext(),AToolActivity.class));
 					
 					break;
 			

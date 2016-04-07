@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    
+    <TextView 
+        style="@style/TitleStyle"
+        android:text="高级工具"/>
+
+    <Button
+        android:id="@+id/btn_quey_phone_address"
+        android:padding="5dp"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:drawableLeft="@android:drawable/btn_star"
+        android:textColor="#000"
+        android:background="@drawable/selector_atool_item_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="归属地查询" />
+
+</LinearLayout>
