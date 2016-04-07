@@ -72,7 +72,7 @@
 
         <Button
             style="@style/prePage"
-            android:onClick="perPage" />
+            android:onClick="prePage" />
     </RelativeLayout>
 
 </LinearLayout>
