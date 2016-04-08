@@ -92,9 +92,9 @@ public class SettingItemView extends RelativeLayout {
 	public void setCheck(boolean isCheck) {
 		ck_box.setChecked(isCheck);
 		if (isCheck) {
-			tv_des.setText(mDesoff);
-		} else {
 			tv_des.setText(mDeson);
+		} else {
+			tv_des.setText(mDesoff);
 		}
 	}
 

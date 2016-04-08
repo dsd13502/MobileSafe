@@ -1,5 +1,6 @@
 package com.dsd.mobilesafe.activity;
 
+import com.dsd.mobilesafe.service.AddressService;
 import com.dsd.mobilesafe.utils.ConstantValue;
 import com.dsd.mobilesafe.utils.SpUtils;
 import com.dsd.mobilesafe.view.SettingItemView;
@@ -8,6 +9,7 @@ import com.dsd.mobilesafe.R.layout;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +26,32 @@ public class SettingActivity extends Activity {
 
 		initUI();
 		initUpdate();
+		
+		initAddress();
 
+	}
+
+	/**
+	 * 是否显示电话归属地的方法
+	 */
+	private void initAddress() {
+		final SettingItemView siv_address = (SettingItemView) findViewById(R.id.siv_address);
+		
+		siv_address.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				//获取点击前的状态
+				boolean isCheck = siv_address.isCheck();
+				siv_address.setCheck(!isCheck);
+				
+				if(!isCheck)
+				{
+					startService(new Intent(getApplicationContext(),AddressService.class));
+					
+				}
+			}
+		});
 	}
 
 	/**
@@ -57,5 +84,7 @@ public class SettingActivity extends Activity {
 			}
 		});
 	}
+	
+	
 
 }

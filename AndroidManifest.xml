@@ -17,7 +17,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
-
+	<uses-permission android:name="android.permission.VIBRATE"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -98,6 +98,9 @@
             android:name="com.dsd.mobilesafe.activity.QueryAddressActivity"
             android:label="@string/title_activity_query_address" >
         </activity>
+       
+        <service 
+            android:name="com.dsd.mobilesafe.service.AddressService" ></service>
     </application>
 
 </manifest>
