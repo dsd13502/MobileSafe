@@ -2,6 +2,7 @@ package com.dsd.mobilesafe.activity;
 
 import com.dsd.mobilesafe.service.AddressService;
 import com.dsd.mobilesafe.utils.ConstantValue;
+import com.dsd.mobilesafe.utils.ServiceUtil;
 import com.dsd.mobilesafe.utils.SpUtils;
 import com.dsd.mobilesafe.view.SettingItemView;
 import com.dsd.mobilesafe.R;
@@ -35,7 +36,12 @@ public class SettingActivity extends Activity {
 	 * 是否显示电话归属地的方法
 	 */
 	private void initAddress() {
+		
 		final SettingItemView siv_address = (SettingItemView) findViewById(R.id.siv_address);
+		
+		//判读归属的服务是否开启了
+				boolean isRunning = ServiceUtil.isRunning(getApplicationContext(), "com.dsd.mobilesafe.service.AddressService");
+				siv_address.setCheck(isRunning);
 		
 		siv_address.setOnClickListener(new View.OnClickListener() {
 			
