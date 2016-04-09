@@ -56,7 +56,6 @@ public class QueryAddressActivity extends Activity {
 					//vibrator.vibrate(1000);
 					//振动500毫秒，休息200ms,振动500毫秒，第二个参数表示重复次数，-1代表不重复
 					vibrator.vibrate(new long[]{500,500,500,500,500,500}, -1);
-
 				}
 
 			}
