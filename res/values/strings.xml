@@ -17,5 +17,7 @@
     <string name="title_activity_mobile_safe">MobileSafeActivity</string>
     <string name="title_activity_set_content">SetContentActivity</string>
     <string name="title_activity_query_address">QueryAddressActivity</string>
+    <string name="title_activity_toast_location">ToastLocationActivity</string>
+    <string name="title_activity_black_number">BlackNumberActivity</string>
 
 </resources>

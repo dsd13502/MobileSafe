@@ -82,5 +82,35 @@ public class SpUtils {
 		
 		sp.edit().remove(key).commit();
 	}
+	
+	/**
+	 * 根据key获取一个int数
+	 * @param ctx
+	 * @param key
+	 * @param defValue
+	 * @return
+	 */
+	public static int getInt(Context ctx,String key,int defValue )
+	{
+		if(sp == null){
+			sp = ctx.getSharedPreferences("config", Context.MODE_PRIVATE);
+		}
+		return sp.getInt(key, defValue);
+		
+	}
+	
+	/**
+	 * 根据key存储一个int数字
+	 * @param ctx
+	 * @param key
+	 * @param value
+	 */
+	public static void putInt(Context ctx,String key, int value)
+	{
+		if(sp == null){
+			sp = ctx.getSharedPreferences("config", Context.MODE_PRIVATE);
+		}
+		sp.edit().putInt(key, value).commit();
+	}
 
 }

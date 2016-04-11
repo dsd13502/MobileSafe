@@ -73,7 +73,6 @@ public class ContactListActivity extends Activity {
 					
 					finish();
 				}
-
 			}
 		});
 	}
@@ -138,7 +137,7 @@ public class ContactListActivity extends Activity {
 				// 因为就一个消息，所以可以不用匹配消息类型了。
 				mHandler.sendEmptyMessage(0);
 
-			};
+			}
 		}.start();
 
 	}

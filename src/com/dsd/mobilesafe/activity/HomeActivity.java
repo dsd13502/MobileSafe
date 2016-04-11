@@ -22,6 +22,7 @@ import com.dsd.mobilesafe.utils.ConstantValue;
 import com.dsd.mobilesafe.utils.Md5Util;
 import com.dsd.mobilesafe.utils.SpUtils;
 import com.dsd.mobilesafe.utils.ToastUtils;
+import com.dsd.mobilesafe.BlackNumberActivity;
 import com.dsd.mobilesafe.R;
 
 public class HomeActivity extends Activity {
@@ -78,7 +79,9 @@ public class HomeActivity extends Activity {
 					
 					showDialog();
 					break;
+				//开启黑名单功能
 				case 1:
+					startActivity(new Intent(getApplicationContext(),BlackNumberActivity.class));
 					
 					break;
 				case 2:

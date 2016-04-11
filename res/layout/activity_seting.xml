@@ -31,5 +31,17 @@
         mobilesafe:deson="归属地的显示以开启"
         >
     </com.dsd.mobilesafe.view.SettingItemView>
+    
+    <com.dsd.mobilesafe.view.SettingClickView
+        android:id="@+id/scv_toast_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.dsd.mobilesafe.view.SettingClickView>
+    
+     <com.dsd.mobilesafe.view.SettingClickView
+        android:id="@+id/scv_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.dsd.mobilesafe.view.SettingClickView>
 
 </LinearLayout>

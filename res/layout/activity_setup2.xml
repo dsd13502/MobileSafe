@@ -64,8 +64,13 @@
             android:background="@drawable/setup1" />
         <!-- 图片选择器， -->
 
-        <Button style="@style/nextPage" />
-        <Button style="@style/prePage" />
+           <Button
+            style="@style/nextPage"
+            android:onClick="nextPage" />
+
+        <Button
+            style="@style/prePage"
+            android:onClick="prePage" />
     </RelativeLayout>
 
     

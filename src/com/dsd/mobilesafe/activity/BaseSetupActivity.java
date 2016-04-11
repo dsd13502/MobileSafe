@@ -79,7 +79,8 @@ public abstract class BaseSetupActivity extends Activity {
 		showNextpage();
 	}
 
-	public void perPage(View view) {
+	public void prePage(View view) {
 		showPerPage();
+		
 	}
-}
+}  
