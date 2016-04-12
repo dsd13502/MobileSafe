@@ -13,7 +13,12 @@ public class Test extends AndroidTestCase {
 	{
 		//getContext() 仅仅由做测试的上下文
 		BlackNumberDao dao = BlackNumberDao.getInstance(getContext());
-		dao.insert("110", "1");
+		for(int i = 0; i < 100; i++)
+		{
+			dao.insert("88"+i, "1");
+		}
+		
+		
 		
 	}
 	

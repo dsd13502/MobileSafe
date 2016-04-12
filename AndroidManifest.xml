@@ -21,8 +21,8 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <!-- 监听去电的权限 -->
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
-
-    <!--  android:targetPackage="com.dsd.mobilesafe" 一定要指定为应用程序的包 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- android:targetPackage="com.dsd.mobilesafe" 一定要指定为应用程序的包 -->
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
         android:targetPackage="com.dsd.mobilesafe" />
@@ -96,6 +96,7 @@
         <receiver android:name=".receiver.SmsReceiver" >
             <intent-filter>
 
+                <!-- 短信拦截 -->
                 <!-- 高版本的平台会找不到android.provider.Telephony.SMS_RECEIVED这个过滤器，需要手动写。需要修改短信发送的广播 -->
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
@@ -123,6 +124,9 @@
             android:name="com.dsd.mobilesafe.activity.BlackNumberActivity"
             android:label="@string/title_activity_black_number" >
         </activity>
+
+        <service android:name="com.dsd.mobilesafe.service.BlackNumberService" >
+        </service>
     </application>
 
 </manifest>

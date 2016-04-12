@@ -1,6 +1,7 @@
 package com.dsd.mobilesafe.activity;
 
 import com.dsd.mobilesafe.service.AddressService;
+import com.dsd.mobilesafe.service.BlackNumberService;
 import com.dsd.mobilesafe.utils.ConstantValue;
 import com.dsd.mobilesafe.utils.ServiceUtil;
 import com.dsd.mobilesafe.utils.SpUtils;
@@ -38,7 +39,41 @@ public class SettingActivity extends Activity {
 		initAddress();
 		initToastStyle();
 		initLocatin();
+		initBlackNumber();
+		
 
+	}
+
+	/**
+	 * 拦截黑名单短信电话方法
+	 */
+	private void initBlackNumber() {
+		final SettingItemView siv_blacknumber = (SettingItemView) findViewById(R.id.siv_blacknumber);
+		
+		boolean isRunning = ServiceUtil.isRunning(getApplicationContext(),
+				"com.dsd.mobilesafe.service.BlackNumberService");
+		siv_blacknumber.setCheck(isRunning);
+		siv_blacknumber.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				boolean isCheck = siv_blacknumber.isCheck();
+				siv_blacknumber.setCheck(!isCheck);
+				
+				if(!isCheck)
+				{
+					//开启黑名单服务
+					startService(new Intent(getApplicationContext(),BlackNumberService.class));
+				}
+				else
+				{
+					//关闭黑名单服务
+					stopService(new Intent(getApplicationContext(),BlackNumberService.class));
+
+				}
+				
+			}
+		});
 	}
 
 	/**

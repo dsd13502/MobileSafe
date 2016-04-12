@@ -120,4 +120,80 @@ public class BlackNumberDao {
 		
 		return blackNumberList;
 	}
+	
+	/**
+	 * 每次查询20条数据
+	 * @param index 查询的索引值
+	 * @return 包含结果的List
+	 */
+	public List<BlackNumberInfo> findIndex(int index)
+	{
+		if(db == null)
+		{
+			db = blackNumberOpenHelper.getWritableDatabase();
+		}
+		
+		//"_id desc" 按照_id 的倒叙查找
+		Cursor cursor = db.rawQuery("select phone,mode from blacknumber order by _id desc limit ? ,20", 
+				new String[]{index+""});
+		blackNumberList = new ArrayList<BlackNumberInfo>();
+		while(cursor.moveToNext())
+		{
+			 BlackNumberInfo blackNumberInfo = new BlackNumberInfo();
+			 //我们是查询的是所有数据，所以第一列是_id,会包类型不匹配的错，（1：更改查询字段索引 cursor.getString(1) cursor.getString(2)
+			 //更改查询语句
+			 blackNumberInfo.setPhone(cursor.getString(0));
+			 blackNumberInfo.setMode(cursor.getString(1));
+			 
+			 blackNumberList.add(blackNumberInfo);
+			 
+		}
+		
+		cursor.close();
+		
+		return blackNumberList;
+	}
+	
+	/**
+	 * 
+	 * @return 数据库中的数据的总条数，没有条目或者异常返回0
+	 */
+	public int getCount()
+	{
+		if(db == null)
+		{
+			db = blackNumberOpenHelper.getWritableDatabase();
+		}
+		int count = 0;
+		Cursor cursor = db.rawQuery("select count(*) from blacknumber",null);
+		if(cursor.moveToNext())
+		{
+			count = cursor.getInt(0);
+		}
+		return count;
+	}
+	
+	/**
+	 * 按照phone去查询mode
+	 * @param phone 作为查询条件的电话号码
+	 * 
+	 * @return 传入电话号码的拦截模式，  1：短信，2：电话,3：所有 0：没有此条数据
+	 */
+	public int getMode(String phone)
+	{
+		if(db == null)
+		{
+			db = blackNumberOpenHelper.getWritableDatabase();
+		}
+		int mode = 0;
+		
+		Cursor cursor = db.query("blacknumber", new String[]{"mode"}, "phone = ?",
+				new String[]{phone}, null, null, null);
+		if(cursor.moveToNext())
+		{
+			mode = cursor.getInt(0);
+		}
+		return mode;
+	}
+
 }

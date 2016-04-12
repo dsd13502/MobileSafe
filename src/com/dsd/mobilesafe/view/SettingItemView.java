@@ -85,10 +85,18 @@ public class SettingItemView extends RelativeLayout {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * 判读是否开启
+	 * @return 返回当前SettingItemView是否选中状态，true开启（checkBox返回true），false开启（checkBox返回false）
+	 */
 	public boolean isCheck() {
 		return ck_box.isChecked();
 	}
 
+	/**
+	 * 
+	 * @param isCheck 作为时候开启的变量，有点击工程中去做传递
+	 */
 	public void setCheck(boolean isCheck) {
 		ck_box.setChecked(isCheck);
 		if (isCheck) {
