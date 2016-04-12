@@ -55,10 +55,9 @@ public class BlackNumberDao {
 		}
 		ContentValues values = new ContentValues();
 		values.put("phone", phone);
-		values.put(mode, mode);
+		values.put("mode", mode);
 		db.insert("blacknumber", null, values);
 		//【end】关闭数据哭
-		db.close();
 	}
 	
 	/**
@@ -73,7 +72,6 @@ public class BlackNumberDao {
 		}
 		
 		db.delete("blacknumber", "phone = ?", new String[]{phone});
-		db.close();
 	}
 	
 	/**
@@ -91,7 +89,6 @@ public class BlackNumberDao {
 		ContentValues values = new ContentValues();
 		values.put("mode", mode);
 		db.update("blacknumber", values, "phone = ?", new String[]{phone});
-		db.close();
 	}
 	
 	/**
@@ -120,7 +117,6 @@ public class BlackNumberDao {
 		}
 		
 		cursor.close();
-		db.close();
 		
 		return blackNumberList;
 	}

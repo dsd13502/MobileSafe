@@ -120,7 +120,7 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
         <activity
-            android:name=".BlackNumberActivity"
+            android:name="com.dsd.mobilesafe.activity.BlackNumberActivity"
             android:label="@string/title_activity_black_number" >
         </activity>
     </application>
