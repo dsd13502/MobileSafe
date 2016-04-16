@@ -43,7 +43,7 @@ public class ProcessManagerActivity extends Activity implements OnClickListener 
 	private long mMemoryTotalSize;
 	private List<ProcessInfo> mProcessInfoList;
 	private List<ProcessInfo> mCustomerProcessList;
-	private List<ProcessInfo> mSystemProcessInfo;
+	private List<ProcessInfo> mSystemProcessList;
 	private MyAdapter myAdapter;
 	private Handler mHandler = new Handler() {
 
@@ -86,7 +86,7 @@ public class ProcessManagerActivity extends Activity implements OnClickListener 
 		// listView中添加两个描述条目
 		@Override
 		public int getCount() {
-			return mProcessInfoList.size() + 2;
+			return mSystemProcessList.size()+mCustomerProcessList.size() + 2;
 		}
 
 		@Override
@@ -98,7 +98,7 @@ public class ProcessManagerActivity extends Activity implements OnClickListener 
 					return mCustomerProcessList.get(position - 1);
 				} else {
 					// 返回系统进程对应条目的对象
-					return mSystemProcessInfo.get(position
+					return mSystemProcessList.get(position
 							- mCustomerProcessList.size() - 2);
 				}
 			}
@@ -133,7 +133,7 @@ public class ProcessManagerActivity extends Activity implements OnClickListener 
 				} else {
 
 					holder.tv_app_des.setText("系统进程("
-							+ mSystemProcessInfo.size() + ")");
+							+ mSystemProcessList.size() + ")");
 				}
 				return convertView;
 			} else {
@@ -206,11 +206,11 @@ public class ProcessManagerActivity extends Activity implements OnClickListener 
 						.getProcessInfo(getApplicationContext());
 
 				mCustomerProcessList = new ArrayList<ProcessInfo>();
-				mSystemProcessInfo = new ArrayList<ProcessInfo>();
+				mSystemProcessList = new ArrayList<ProcessInfo>();
 
 				for (ProcessInfo processInfo : mProcessInfoList) {
 					if (processInfo.isSystem()) {
-						mSystemProcessInfo.add(processInfo);
+						mSystemProcessList.add(processInfo);
 					} else {
 						mCustomerProcessList.add(processInfo);
 					}
@@ -280,7 +280,7 @@ public class ProcessManagerActivity extends Activity implements OnClickListener 
 						mProcessInfo = mCustomerProcessList.get(position-1);
 					}else{
 						//返回系统应用对应条目的对象
-						mProcessInfo = mSystemProcessInfo.get(position - mCustomerProcessList.size()-2);
+						mProcessInfo = mSystemProcessList.get(position - mCustomerProcessList.size()-2);
 					}
 					if(mProcessInfo!=null){
 						if(!mProcessInfo.getPackageName().equals(getPackageName())){
@@ -311,10 +311,10 @@ public class ProcessManagerActivity extends Activity implements OnClickListener 
 				// firstVisibleItem第一个可见条目索引值
 				// visibleItemCount当前一个屏幕的可见条目数
 				// 总共条目总数
-				if (mCustomerProcessList != null && mSystemProcessInfo != null) {
+				if (mCustomerProcessList != null && mSystemProcessList != null) {
 					if (firstVisibleItem >= mCustomerProcessList.size() + 1) {
 						// 滚动到了系统条目
-						tv_des.setText("系统进程(" + mSystemProcessInfo.size()
+						tv_des.setText("系统进程(" + mSystemProcessList.size()
 								+ ")");
 					} else {
 						// 滚动到了用户应用条目
@@ -364,7 +364,7 @@ public class ProcessManagerActivity extends Activity implements OnClickListener 
 			}
 		}
 
-		for (ProcessInfo processInfo : mSystemProcessInfo) {
+		for (ProcessInfo processInfo : mSystemProcessList) {
 			if(processInfo.isCheck())
 			{
 				killProcessList.add(processInfo);
@@ -376,9 +376,9 @@ public class ProcessManagerActivity extends Activity implements OnClickListener 
 			if(mCustomerProcessList.contains(processInfo))
 			{
 				mCustomerProcessList.remove(processInfo);
-			}else if(mSystemProcessInfo.contains(processInfo))
+			}else if(mSystemProcessList.contains(processInfo))
 			{
-				mSystemProcessInfo.remove(processInfo);
+				mSystemProcessList.remove(processInfo);
 			}
 			
 			//杀死进程
@@ -414,7 +414,7 @@ public class ProcessManagerActivity extends Activity implements OnClickListener 
 			processInfo.setCheck(!processInfo.isCheck());
 		}
 
-		for (ProcessInfo processInfo : mSystemProcessInfo) {
+		for (ProcessInfo processInfo : mSystemProcessList) {
 			processInfo.setCheck(!processInfo.isCheck());
 		}
 		if(myAdapter !=null)
@@ -433,7 +433,7 @@ public class ProcessManagerActivity extends Activity implements OnClickListener 
 			processInfo.setCheck(true);
 		}
 
-		for (ProcessInfo processInfo : mSystemProcessInfo) {
+		for (ProcessInfo processInfo : mSystemProcessList) {
 			processInfo.setCheck(true);
 		}
 		if(myAdapter !=null)
