@@ -360,11 +360,11 @@ public class SplashActivity extends Activity {
 
 					// 指定睡眠时间，请求网络的时长超过4秒则不做处理
 					// 少于4秒强制睡眠4秒
-					long endTime = System.currentTimeMillis();
-
-					if (endTime - startTime < 4000) {
-						SystemClock.sleep(4000 - (endTime - startTime));
-					}
+//					long endTime = System.currentTimeMillis();
+//
+//					if (endTime - startTime < 4000) {
+//						SystemClock.sleep(4000 - (endTime - startTime));
+//					}
 					// 不管怎么样都应该把消息发回去
 					mHandler.sendMessage(mMessage);
 				}

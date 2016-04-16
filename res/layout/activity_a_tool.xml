@@ -9,6 +9,7 @@
         android:text="高级工具"/>
 
     <Button
+        
         android:id="@+id/btn_quey_phone_address"
         android:padding="5dp"
         android:gravity="center"
@@ -19,5 +20,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="归属地查询" />
+   
+        
+
+    
+    <Button
+        android:layout_marginTop="2dp"
+        android:id="@+id/btn_backup_sms"
+        android:padding="5dp"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:drawableLeft="@android:drawable/btn_star"
+        android:textColor="#000"
+        android:background="@drawable/selector_atool_item_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="备份短信" />
+    
+    <ProgressBar 
+        android:id="@+id/pb_backup_sms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyleHorizontal"/>
+
+
 
 </LinearLayout>

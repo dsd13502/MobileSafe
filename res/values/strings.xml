@@ -19,5 +19,7 @@
     <string name="title_activity_query_address">QueryAddressActivity</string>
     <string name="title_activity_toast_location">ToastLocationActivity</string>
     <string name="title_activity_black_number">BlackNumberActivity</string>
+    <string name="title_activity_app_manager">AppManagerActivity</string>
+    <string name="title_activity_process_manager">ProcessManagerActivity</string>
 
 </resources>

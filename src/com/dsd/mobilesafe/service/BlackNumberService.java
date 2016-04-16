@@ -13,6 +13,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.ContentObserver;
+import android.net.Uri;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.telephony.PhoneStateListener;
@@ -23,11 +26,12 @@ import android.util.Log;
 
 public class BlackNumberService extends Service {
 
-	private InnerSmsRecevier innerSmsRecevier;
-	private InnerOutCallReceiver innerOutCallReceiver;
+	private InnerSmsRecevier mInnerSmsRecevier;
+	private InnerOutCallReceiver mInnerOutCallReceiver;
 	private MyPhoneStateListener myPhoneStateListener;
 	private TelephonyManager mTM;
 	private BlackNumberDao mDao;
+	private MyContentObserver myContentObserver;
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -43,8 +47,8 @@ public class BlackNumberService extends Service {
 		IntentFilter intentFilter = new IntentFilter();
 		intentFilter.addAction("android.provider.Telephony.SMS_RECEIVED");
 		intentFilter.setPriority(1000);
-		innerSmsRecevier = new InnerSmsRecevier();
-		registerReceiver(innerSmsRecevier, intentFilter);
+		mInnerSmsRecevier = new InnerSmsRecevier();
+		registerReceiver(mInnerSmsRecevier, intentFilter);
 
 		// 拦截电话状态
 		// [1]获取电话管理者
@@ -59,7 +63,24 @@ public class BlackNumberService extends Service {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		unregisterReceiver(innerSmsRecevier);
+		//注销广播接受者
+		if(mInnerSmsRecevier != null)
+		{
+			unregisterReceiver(mInnerSmsRecevier);	
+		}
+		
+		//注销内容观察者
+		if(myContentObserver != null)
+		{
+			getContentResolver().unregisterContentObserver(myContentObserver);
+		}
+		
+		//取消对电话状态的监听
+		if(myPhoneStateListener != null)
+		{
+			mTM.listen(myPhoneStateListener,PhoneStateListener.LISTEN_NONE);
+		}
+		
 
 	}
 
@@ -139,25 +160,46 @@ public class BlackNumberService extends Service {
 				iTelephony.endCall();
 
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (NoSuchMethodException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			myContentObserver = new MyContentObserver(new Handler(),incomingNumber);
+			//通过内容解析器，去注册内容观察者，通话内容观察者，观察数据库（Uri决定那张表的那个库）的变化
+			getContentResolver().registerContentObserver(Uri.parse("content://call_log/calls"), 
+					true, myContentObserver);
 
 		}
+	}
+	
+	class MyContentObserver extends ContentObserver{
+
+		private String phone;
+
+		public MyContentObserver(Handler handler, String incomingNumber) {
+			super(handler);
+			
+			this.phone = incomingNumber;
+			// TODO Auto-generated constructor stub
+		}
+		
+		//☆☆☆☆☆最重要的方法，数据库中指定calls表发生的时候会调用方法
+		@Override
+		public void onChange(boolean selfChange) {
+			//发现数据有变化时，删除记录
+			getContentResolver().delete(Uri.parse("content://call_log/calls"), "number = ?", new String[]{phone});
+			
+			super.onChange(selfChange);
+		}
+		
 	}
 }
