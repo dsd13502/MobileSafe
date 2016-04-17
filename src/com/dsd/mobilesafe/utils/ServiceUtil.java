@@ -25,6 +25,7 @@ public class ServiceUtil {
 		//【3】遍历获取的所有服务，拿到每一个服务的名称，和传递进来的类的名称作比对，如果一致，说明服务正在运行
 		for (RunningServiceInfo runningServiceInfo : runningServices) {
 			//【4】获取每一个正在运行服务的名称
+			serviceName = serviceName.trim();
 			if(serviceName.equals(runningServiceInfo.service.getClassName()))
 			{
 				return true;

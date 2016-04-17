@@ -3,7 +3,9 @@ package com.dsd.mobilesafe.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.format.Formatter;
@@ -26,6 +28,8 @@ import android.widget.Toast;
 import com.dsd.mobilesafe.R;
 import com.dsd.mobilesafe.db.daomain.ProcessInfo;
 import com.dsd.mobilesafe.engine.ProcessInfoProvider;
+import com.dsd.mobilesafe.utils.ConstantValue;
+import com.dsd.mobilesafe.utils.SpUtils;
 
 public class ProcessManagerActivity extends Activity implements OnClickListener {
 	private String tag = "ProcessManagerActivity";
@@ -52,6 +56,7 @@ public class ProcessManagerActivity extends Activity implements OnClickListener 
 			lv_process_list.setAdapter(myAdapter);
 		};
 	};
+	private boolean show_system_process;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +91,15 @@ public class ProcessManagerActivity extends Activity implements OnClickListener 
 		// listView中添加两个描述条目
 		@Override
 		public int getCount() {
-			return mSystemProcessList.size()+mCustomerProcessList.size() + 2;
+			
+			if (show_system_process) {
+				return mSystemProcessList.size()+mCustomerProcessList.size() + 2;
+			}
+			else
+			{
+				return mCustomerProcessList.size() ;
+			}
+			
 		}
 
 		@Override
@@ -231,6 +244,7 @@ public class ProcessManagerActivity extends Activity implements OnClickListener 
 	 */
 	private void initTitleData() {
 
+		show_system_process = SpUtils.getBoolean(getApplicationContext(), ConstantValue.SHOW_SYSTEM_PROCESS, false);
 		// 获取进程总数
 		mProcessCount = ProcessInfoProvider.getProcessCount(this);
 		tv_process_count.setText("进程总数：" + mProcessCount);
@@ -344,11 +358,20 @@ public class ProcessManagerActivity extends Activity implements OnClickListener 
 			break;
 
 		case R.id.bt_setting:
+			startActivityForResult(new Intent(getApplicationContext(),
+					ProcessSettingActivity.class), 0);
 			break;
 		}
 
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		show_system_process = SpUtils.getBoolean(getApplicationContext(), ConstantValue.SHOW_SYSTEM_PROCESS, false);
+		myAdapter.notifyDataSetChanged();
+	}
 	/**
 	 * 一键清理
 	 */
@@ -391,11 +414,12 @@ public class ProcessManagerActivity extends Activity implements OnClickListener 
 			//更新
 			tv_process_count.setText("总进程数："+mProcessCount);
 			mMemoryAvailSize += toatalReleaseSpace;
-			String releaseSpace = Formatter.formatShortFileSize(getApplicationContext(), mMemoryAvailSize);
-			tv_memory_info.setText("剩余内存/总共内存"+releaseSpace+"+"+mMemoryTotalSize);
+			String availSpace = Formatter.formatShortFileSize(getApplicationContext(), mMemoryAvailSize);
+			String strTotalSpace = Formatter.formatFileSize(this, mMemoryTotalSize);
+			tv_memory_info.setText("剩余内存/总共内存"+availSpace+"/"+strTotalSpace);
 			
 			Toast.makeText(getApplicationContext(), "杀死了"+killProcessList.size()
-					+"个进程，释放了"+releaseSpace+"内存", 0).show();
+					+"个进程，释放了"+toatalReleaseSpace+"内存", 0).show();
 			
 		}
 		

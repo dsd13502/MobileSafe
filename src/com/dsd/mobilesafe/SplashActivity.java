@@ -116,7 +116,6 @@ public class SplashActivity extends Activity {
 			}
 		};
 	};
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -127,15 +126,42 @@ public class SplashActivity extends Activity {
 
 		// 初始化UI
 		initUI();
-		//添加动画
+		// 添加动画
 		initAnimation();
-		//初始化数据
+		// 初始化数据
 		initDate();
-		//初始化数据库
+		// 初始化数据库
 		initDB();
-		
-		
-		
+		// 初始化桌面快捷方式
+		initShortCut();
+
+	}
+
+	/**
+	 * 创建快捷方法
+	 */
+	private void initShortCut() {
+		boolean show_shortCut = SpUtils.getBoolean(getApplicationContext(),
+				ConstantValue.SHOW_SHORT_CUT, false);
+		if (!show_shortCut) {
+			Intent intent = new Intent(
+					"com.android.launcher.action.INSTALL_SHORTCUT");
+			intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
+					R.drawable.ic_launcher);
+			intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "手机卫士快捷方式");
+
+			Intent shortCutIntent = new Intent("android.intent.action.HOME");
+			shortCutIntent.addCategory("android.intent.category.DEFAULT");
+
+			intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortCutIntent);
+
+			// 发出广播
+			sendBroadcast(intent);
+			SpUtils.putBoolean(getApplicationContext(),
+					ConstantValue.SHOW_SHORT_CUT, true);
+
+		}
+
 	}
 
 	/**
@@ -144,43 +170,42 @@ public class SplashActivity extends Activity {
 	private void initDB() {
 		// 1.归属地数据拷贝过程
 		initAddressDB("address.db");
-		
+		// 拷贝常用电话号码的过程
+		initAddressDB("commonnum.db");
 	}
 
 	/**
 	 * 拷贝数据库值files文件夹中
-	 * @param dbName  数据库名称
+	 * 
+	 * @param dbName
+	 *            数据库名称
 	 */
 	private void initAddressDB(String dbName) {
-		//【1】在files文件夹下创建同名数据库文件
+		// 【1】在files文件夹下创建同名数据库文件
 		File filesDir = getFilesDir();
-		File file = new File(filesDir,dbName);
-		if(file.exists())
-		{
-			Log.i(tag, "file存在了，他的路径:"+file.getAbsolutePath());
+		File file = new File(filesDir, dbName);
+		if (file.exists()) {
+			Log.i(tag, "file存在了，他的路径:" + file.getAbsolutePath());
 			return;
 		}
-		Log.i(tag, "file的路径:"+file.getAbsolutePath());
+		Log.i(tag, "file的路径:" + file.getAbsolutePath());
 		FileOutputStream fileOutputStream = null;
-		//【2】读取第三方资产目录下的文件，
+		// 【2】读取第三方资产目录下的文件，
 		try {
 			InputStream openStream = getAssets().open(dbName);
-			//[3]将读取的内容写入到指定的文件夹中
+			// [3]将读取的内容写入到指定的文件夹中
 			fileOutputStream = new FileOutputStream(file);
 			int len = -1;
 			byte[] buffer = new byte[1024];
-			while((len = openStream.read(buffer)) != -1)
-			{
+			while ((len = openStream.read(buffer)) != -1) {
 				fileOutputStream.write(buffer, 0, len);
-				
+
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally{
-			if(fileOutputStream != null)
-			{
+		} finally {
+			if (fileOutputStream != null) {
 				try {
 					fileOutputStream.close();
 				} catch (IOException e) {
@@ -189,8 +214,7 @@ public class SplashActivity extends Activity {
 				}
 			}
 		}
-		
-		
+
 	}
 
 	/**
@@ -226,27 +250,23 @@ public class SplashActivity extends Activity {
 		 * 1. 从 url 返回200,请求成功，流的方式将数据读取下来 2.json中应该包含的信息 更新版本的版本名称 服务器上的版本号
 		 * 新版本描述 下载新apk
 		 */
-		
-		if(SpUtils.getBoolean(this, ConstantValue.OPEN_UPDATE, true))
-		{
-			//检查版本
+
+		if (SpUtils.getBoolean(this, ConstantValue.OPEN_UPDATE, true)) {
+			// 检查版本
 			checkVersion();
-		}
-		else
-		{
-			//发送进入主界面的消息：
-			//发送延时消息,在消息发送4秒后执行消息
-			//mHandler.sendMessageDelayed(msg, delayMillis)
+		} else {
+			// 发送进入主界面的消息：
+			// 发送延时消息,在消息发送4秒后执行消息
+			// mHandler.sendMessageDelayed(msg, delayMillis)
 			mHandler.sendEmptyMessageDelayed(ENTER_HOME, 4000);
 		}
-		
+
 	}
-	
+
 	/**
 	 * 初始化Alpha动画
 	 */
-	public void initAnimation()
-	{
+	public void initAnimation() {
 		AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1);
 		alphaAnimation.setDuration(2000);
 		rv_splash_root.setAnimation(alphaAnimation);
@@ -360,11 +380,11 @@ public class SplashActivity extends Activity {
 
 					// 指定睡眠时间，请求网络的时长超过4秒则不做处理
 					// 少于4秒强制睡眠4秒
-//					long endTime = System.currentTimeMillis();
-//
-//					if (endTime - startTime < 4000) {
-//						SystemClock.sleep(4000 - (endTime - startTime));
-//					}
+					// long endTime = System.currentTimeMillis();
+					//
+					// if (endTime - startTime < 4000) {
+					// SystemClock.sleep(4000 - (endTime - startTime));
+					// }
 					// 不管怎么样都应该把消息发回去
 					mHandler.sendMessage(mMessage);
 				}
@@ -417,18 +437,18 @@ public class SplashActivity extends Activity {
 
 					}
 				});
-		//【6】☆☆☆☆☆☆点击回退时的事件监听
+		// 【6】☆☆☆☆☆☆点击回退时的事件监听
 		builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-			
+
 			@Override
 			public void onCancel(DialogInterface dialog) {
 				// 用户在点击取消的时候也要进入
 				enterHome();
 				dialog.dismiss();
-				
+
 			}
 		});
-		//【7】☆☆☆☆☆取消 安装apk 的逻辑 
+		// 【7】☆☆☆☆☆取消 安装apk 的逻辑
 
 		builder.show();
 	}
@@ -491,23 +511,22 @@ public class SplashActivity extends Activity {
 	 *            安装的文件
 	 */
 	protected void installApk(File file) {
-		
-		//使用隐式意图打开系统的安装软件过程
+
+		// 使用隐式意图打开系统的安装软件过程
 		Intent intent = new Intent("android.intent.action.VIEW");
-		//设置Date
-//		intent.setData(Uri.fromFile(file));
-//		intent.setType("application/vnd.android.package-archive");
+		// 设置Date
+		// intent.setData(Uri.fromFile(file));
+		// intent.setType("application/vnd.android.package-archive");
 		intent.addCategory("android.intent.category.DEFAULT");
-		
-		intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-		
-		//startActivity(intent);
-		//防止用户取消换安装apk，停留则splashActivity无法继续进Homeactivity
+
+		intent.setDataAndType(Uri.fromFile(file),
+				"application/vnd.android.package-archive");
+
+		// startActivity(intent);
+		// 防止用户取消换安装apk，停留则splashActivity无法继续进Homeactivity
 		startActivityForResult(intent, 0);
 	}
-	
-	
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);

@@ -2,47 +2,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    
-    <TextView 
+    android:orientation="vertical" >
+
+    <TextView
         style="@style/TitleStyle"
-        android:text="高级工具"/>
+        android:text="高级工具" />
 
     <Button
-        
         android:id="@+id/btn_quey_phone_address"
-        android:padding="5dp"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:drawableLeft="@android:drawable/btn_star"
-        android:textColor="#000"
-        android:background="@drawable/selector_atool_item_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="归属地查询" />
-   
-        
+        android:background="@drawable/selector_atool_item_bg"
+        android:drawableLeft="@android:drawable/btn_star"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="归属地查询"
+        android:textColor="#000"
+        android:textSize="18sp" />
 
-    
     <Button
-        android:layout_marginTop="2dp"
         android:id="@+id/btn_backup_sms"
-        android:padding="5dp"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:drawableLeft="@android:drawable/btn_star"
-        android:textColor="#000"
-        android:background="@drawable/selector_atool_item_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="备份短信" />
-    
-    <ProgressBar 
+        android:layout_marginTop="2dp"
+        android:background="@drawable/selector_atool_item_bg"
+        android:drawableLeft="@android:drawable/btn_star"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="备份短信"
+        android:textColor="#000"
+        android:textSize="18sp" />
+
+    <!--
+         <ProgressBar 
         android:id="@+id/pb_backup_sms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="?android:attr/progressBarStyleHorizontal"/>
+    -->
 
-
+    <Button
+        android:id="@+id/bt_commonnumber_query"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/selector_atool_item_bg"
+        android:drawableLeft="@android:drawable/btn_star"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="常用电话号码查询"
+        android:textColor="#000"
+        android:textSize="18sp" />
 
 </LinearLayout>

@@ -45,5 +45,13 @@ public class ConstantValue {
 	 *	 存储toast位置的y轴坐标
 	 */
 	public static final String LOCATION_Y = "location_y";
+	/**
+	 * 判断是否显示系统进程的key
+	 */
+	public static final String SHOW_SYSTEM_PROCESS="show_system_process";
+	/**
+	 * 判读是否创建快捷方式
+	 */
+	public static String SHOW_SHORT_CUT = "show_short_cut";
 
 }
