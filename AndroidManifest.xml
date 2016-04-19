@@ -147,18 +147,41 @@
             android:label="@string/title_activity_process_manager" >
         </activity>
         <activity
-            android:name="com.dsd.mobilesafe.activity.ProcessSettingActivity"
+            android:name=".activity.ProcessSettingActivity"
             android:label="@string/title_activity_process_setting" >
         </activity>
 
         <service android:name=".receiver.LockScreenService" >
         </service>
 
-        <activity 
+        <activity
             android:name=".activity.CommonNumberQueryActivity"
-			android:label="@string/title_activity_common_number_query" >
+            android:label="@string/title_activity_common_number_query" >
         </activity>
-       
+
+        <receiver android:name=".receiver.MyAppWidgetProvider" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/process_widget_provider" />
+        </receiver>
+
+        <service android:name=".service.UpdateWidgetService" >
+        </service>
+
+        <receiver android:name=".receiver.KillBackgroundProcess" >
+            <intent-filter>
+                <action android:name="android.intent.action.KILL_BACKGROUND_PROCESS" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".AppLockActivity"
+            android:label="@string/title_activity_app_lock" >
+        </activity>
     </application>
 
 </manifest>

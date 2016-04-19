@@ -23,5 +23,6 @@
     <string name="title_activity_process_manager">ProcessManagerActivity</string>
     <string name="title_activity_process_setting">ProcessSettingActivity</string>
     <string name="title_activity_common_number_query">CommonNumberQueryActivity</string>
+    <string name="title_activity_app_lock">AppLockActivity</string>
 
 </resources>

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import com.dsd.mobilesafe.AppLockActivity;
 import com.dsd.mobilesafe.R;
 import com.dsd.mobilesafe.engine.CommonnumDao;
 import com.dsd.mobilesafe.engine.SmsBackUp;
@@ -31,6 +32,21 @@ public class AToolActivity extends Activity {
 		initPhoneAddress();
 		initSmsBackUp();
 		initCommonnumNumberQuery();
+		initAppLock();
+	}
+
+	/**
+	 * 初始化软件锁
+	 */
+	private void initAppLock() {
+		Button bt_app_lock = (Button) findViewById(R.id.bt_app_lock);
+		bt_app_lock.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(getApplicationContext(),AppLockActivity.class));
+			}
+		});
 	}
 
 	/**

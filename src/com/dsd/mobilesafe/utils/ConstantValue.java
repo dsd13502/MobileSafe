@@ -52,6 +52,10 @@ public class ConstantValue {
 	/**
 	 * 判读是否创建快捷方式
 	 */
-	public static String SHOW_SHORT_CUT = "show_short_cut";
+	public static final String SHOW_SHORT_CUT = "show_short_cut";
+	/**
+	 * 判断显示 未加件锁 还是 以加锁 列表
+	 */
+	public static final String APP_LOCKED = "app_locked";
 
 }
