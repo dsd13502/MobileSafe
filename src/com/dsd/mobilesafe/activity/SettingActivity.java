@@ -2,6 +2,7 @@ package com.dsd.mobilesafe.activity;
 
 import com.dsd.mobilesafe.service.AddressService;
 import com.dsd.mobilesafe.service.BlackNumberService;
+import com.dsd.mobilesafe.service.WatchDogService;
 import com.dsd.mobilesafe.utils.ConstantValue;
 import com.dsd.mobilesafe.utils.ServiceUtil;
 import com.dsd.mobilesafe.utils.SpUtils;
@@ -40,8 +41,41 @@ public class SettingActivity extends Activity {
 		initToastStyle();
 		initLocatin();
 		initBlackNumber();
-		
+		initAppLock();
 
+	}
+
+	/**
+	 * 程序锁
+	 */
+	private void initAppLock() {
+		
+	final SettingItemView siv_app_lock = (SettingItemView) findViewById(R.id.siv_app_lock);
+		
+		boolean isRunning = ServiceUtil.isRunning(getApplicationContext(),
+				"com.dsd.mobilesafe.service.WatchDogService");
+		siv_app_lock.setCheck(isRunning);
+		siv_app_lock.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				boolean isCheck = siv_app_lock.isCheck();
+				siv_app_lock.setCheck(!isCheck);
+				
+				if(!isCheck)
+				{
+					//开启黑名单服务
+					startService(new Intent(getApplicationContext(),WatchDogService.class));
+				}
+				else
+				{
+					//关闭黑名单服务
+					stopService(new Intent(getApplicationContext(),WatchDogService.class));
+
+				}
+				
+			}
+		});
 	}
 
 	/**

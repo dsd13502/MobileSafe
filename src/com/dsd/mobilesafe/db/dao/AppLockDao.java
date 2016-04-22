@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 
 import com.dsd.mobilesafe.db.AppLockOpenHelder;
 
@@ -21,8 +23,10 @@ public class AppLockDao {
 
 	private static AppLockDao mDao = null;
 	private SQLiteDatabase mDB;
-
+	private Context context = null;
 	private AppLockDao(Context context) {
+		this.context = context;
+		
 		AppLockOpenHelder mAppLockOpenHelder = new AppLockOpenHelder(context);
 		mDB = mAppLockOpenHelder.getWritableDatabase();
 	}
@@ -38,6 +42,8 @@ public class AppLockDao {
 		ContentValues values = new ContentValues();
 		values.put("packagename", packagename);
 		mDB.insert("applock", "packagename = ?", values);
+		
+		context.getContentResolver().notifyChange(Uri.parse("content://appLock/change"), null);
 	}
 
 	public List<String> findAll() {
@@ -54,6 +60,7 @@ public class AppLockDao {
 	public void delete(String packageName)
 	{
 		mDB.delete("applock", "packagename = ?", new String[]{packageName});
+		context.getContentResolver().notifyChange(Uri.parse("content://appLock/change"), null);
 	}
 
 }

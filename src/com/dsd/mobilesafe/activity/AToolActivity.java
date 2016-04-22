@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.dsd.mobilesafe.AppLockActivity;
 import com.dsd.mobilesafe.R;
 import com.dsd.mobilesafe.engine.CommonnumDao;
 import com.dsd.mobilesafe.engine.SmsBackUp;

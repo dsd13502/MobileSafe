@@ -1,4 +1,4 @@
-package com.dsd.mobilesafe;
+package com.dsd.mobilesafe.activity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +20,10 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.dsd.mobilesafe.R;
+import com.dsd.mobilesafe.R.drawable;
+import com.dsd.mobilesafe.R.id;
+import com.dsd.mobilesafe.R.layout;
 import com.dsd.mobilesafe.db.dao.AppLockDao;
 import com.dsd.mobilesafe.db.daomain.AppInfo;
 import com.dsd.mobilesafe.engine.AppInfoProvider;

@@ -9,8 +9,6 @@
         style="@style/TitleStyle"
         android:text="设置中心" />
 
-    
-
     <com.dsd.mobilesafe.view.SettingItemView
         xmlns:mobilesafe="http://schemas.android.com/apk/res/com.dsd.mobilesafe"
         android:id="@+id/siv_update"
@@ -26,33 +24,40 @@
         android:id="@+id/siv_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        mobilesafe:destitle="电话归属地的属性设置" 
         mobilesafe:desoff="归属地的显示以关闭"
         mobilesafe:deson="归属地的显示以开启"
-        >
+        mobilesafe:destitle="电话归属地的属性设置" >
     </com.dsd.mobilesafe.view.SettingItemView>
-    
+
     <com.dsd.mobilesafe.view.SettingClickView
         android:id="@+id/scv_toast_style"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
     </com.dsd.mobilesafe.view.SettingClickView>
-    
-     <com.dsd.mobilesafe.view.SettingClickView
+
+    <com.dsd.mobilesafe.view.SettingClickView
         android:id="@+id/scv_location"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
     </com.dsd.mobilesafe.view.SettingClickView>
-    
-      <com.dsd.mobilesafe.view.SettingItemView
+
+    <com.dsd.mobilesafe.view.SettingItemView
         xmlns:mobilesafe="http://schemas.android.com/apk/res/com.dsd.mobilesafe"
         android:id="@+id/siv_blacknumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        mobilesafe:destitle="黑名单拦截设置" 
         mobilesafe:desoff="黑名单拦截以关闭"
         mobilesafe:deson="黑名单拦截以开启"
-        >
+        mobilesafe:destitle="黑名单拦截设置" >
     </com.dsd.mobilesafe.view.SettingItemView>
 
+       <com.dsd.mobilesafe.view.SettingItemView
+        xmlns:mobilesafe="http://schemas.android.com/apk/res/com.dsd.mobilesafe"
+        android:id="@+id/siv_app_lock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        mobilesafe:desoff="程序锁以关闭"
+        mobilesafe:deson="程序锁以开启"
+        mobilesafe:destitle="程序锁设置" >
+    </com.dsd.mobilesafe.view.SettingItemView>
 </LinearLayout>
