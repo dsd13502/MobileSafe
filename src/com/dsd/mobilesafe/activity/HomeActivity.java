@@ -22,6 +22,7 @@ import com.dsd.mobilesafe.utils.ConstantValue;
 import com.dsd.mobilesafe.utils.Md5Util;
 import com.dsd.mobilesafe.utils.SpUtils;
 import com.dsd.mobilesafe.utils.ToastUtils;
+import com.dsd.mobilesafe.AntiVirusActivity;
 import com.dsd.mobilesafe.R;
 
 public class HomeActivity extends Activity {
@@ -93,8 +94,9 @@ public class HomeActivity extends Activity {
 				case 4:
 					
 					break;
+				//病毒查杀
 				case 5:
-					
+					startActivity(new Intent(getApplicationContext(),AntiVirusActivity.class));
 					break;
 				case 6:
 					

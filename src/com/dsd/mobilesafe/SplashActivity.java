@@ -169,9 +169,12 @@ public class SplashActivity extends Activity {
 	 */
 	private void initDB() {
 		// 1.归属地数据拷贝过程
-		initAddressDB("address.db");
+		createDB("address.db");
 		// 拷贝常用电话号码的过程
-		initAddressDB("commonnum.db");
+		createDB("commonnum.db");
+		
+		//拷贝病毒数据库
+		createDB("antivirus.db");
 	}
 
 	/**
@@ -180,7 +183,7 @@ public class SplashActivity extends Activity {
 	 * @param dbName
 	 *            数据库名称
 	 */
-	private void initAddressDB(String dbName) {
+	private void createDB(String dbName) {
 		// 【1】在files文件夹下创建同名数据库文件
 		File filesDir = getFilesDir();
 		File file = new File(filesDir, dbName);
